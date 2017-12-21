@@ -1,0 +1,13 @@
+node('maven') {
+    stage('build') {
+        sleep 15
+        openshiftBuild(buildConfig: 'web', showBuildLogs: 'true')
+    }
+    stage('verify') {
+        sleep 15
+    }
+    stage('deploy') {
+        input 'Manual Approval'    
+        openshiftDeploy(deploymentConfig: 'web')   
+    }
+}

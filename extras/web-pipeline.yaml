@@ -1,0 +1,16 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "web-pipeline"
+  annotations:
+    pipeline.alpha.openshift.io/uses: '[{"name": "web", "kind": "DeploymentConfig"}]'
+spec:
+  source:
+    type: "Git"
+    git:
+      uri: "https://github.com/redhat-sa-brazil/demo-openshift-python.git"
+      ref: "master"
+  strategy:
+    type: "JenkinsPipeline"
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: "extras/Jenkinsfile"
