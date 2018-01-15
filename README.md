@@ -43,9 +43,9 @@ $ oc create -f extras/web-configmap.yaml
 ```
 > Use a GUI para demonstrar outra maneira de criar componentes usando o catálogo e os modelos.
 ```
-8. Atualize o DeploymentConfig do componente da Web para usar o Secret Bindings com as credenciais do MongoDB e valide o resultado:
+8. Atualize o DeploymentConfig *Web* para usar o Secret com as credenciais do MongoDB e valide o resultado:
 ```
-> Use a GUI para demonstrar como devemos lidar com dados sensíveis de forma desacoplada.
+$ oc set env --from=secret/mongodb dc/web
 ```
 9. Demonstrar a capacidade de auto-recuperação (ReplicationController) e como os dados do contêiner DB não são afetados:
 ```
