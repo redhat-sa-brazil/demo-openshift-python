@@ -37,9 +37,9 @@ def get_motd():
 
 if __name__ == '__main__':
     try:
-        dbname = environ['DATABASE_NAME']
-        dbuser = environ['DATABASE_USER']
-        dbpass = environ['DATABASE_PASSWORD']
+        dbname = environ['database_name']
+        dbuser = environ['username']
+        dbpass = environ['password']
         client = MongoClient('mongodb://%s:%s@mongodb/%s' % (dbuser,dbpass,dbname))
         db = client[dbname]
         database_enabled = True
