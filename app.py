@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 
 from os import environ
+import sys
+import signal
 from pymongo import MongoClient
 from flask import Flask, request, redirect, render_template
 
@@ -35,6 +37,9 @@ def get_motd():
     except:
         return None
 
+def sigterm_handler(_signo, _stack_frame):
+    sys.exit(0)
+
 if __name__ == '__main__':
     try:
         dbname = environ['database_name']
@@ -46,4 +51,8 @@ if __name__ == '__main__':
     except:
         database_enabled = False
 
-    app.run(host='0.0.0.0', port='8080')
+    signal.signal(signal.SIGTERM, sigterm_handler)
+    try:
+        app.run(host='0.0.0.0', port='8080')
+    finally:
+        print('Exiting...')
