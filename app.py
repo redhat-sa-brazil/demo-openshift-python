@@ -42,9 +42,9 @@ def sigterm_handler(_signo, _stack_frame):
 
 if __name__ == '__main__':
     try:
-        dbname = environ['database_name']
-        dbuser = environ['username']
-        dbpass = environ['password']
+        dbname = environ['database-name']
+        dbuser = environ['database-user']
+        dbpass = environ['database-password']
         client = MongoClient('mongodb://%s:%s@mongodb/%s' % (dbuser,dbpass,dbname))
         db = client[dbname]
         database_enabled = True
